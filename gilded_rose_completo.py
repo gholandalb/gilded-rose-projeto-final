@@ -30,6 +30,13 @@ class GildedRose:
     def __init__(self, itens: list[Item]):
         self.itens = itens
 
+    def garantir_limites(self, item):
+        if item.qualidade > 50:
+            item.qualidade = 50
+
+        if item.qualidade < 0:
+            item.qualidade = 0
+
     def atualizar_aged_brie(self, item):
 
         item.validade -= 1
@@ -40,15 +47,15 @@ class GildedRose:
         elif item.validade < 0:
             item.qualidade += 2
 
-        if item.qualidade > 50:
-            item.qualidade = 50
-
-        if item.qualidade < 0:
-            item.qualidade = 0
+        self.garantir_limites(item)
 
 
     def atualizar_sulfuras(self, item):
-        item.qualidade = 80
+        if item.validade >= 0:
+            item.qualidade = 80
+        else:
+            item.qualidade -=2
+            item.validade -= 1
 
 
     def atualizar_backstage_passes(self, item):
@@ -63,11 +70,9 @@ class GildedRose:
 
         item.validade -= 1
 
+        self.garantir_limites(item)
         if item.validade < 0:
             item.qualidade = 0
-
-        if item.qualidade > 50:
-            item.qualidade = 50
 
 
     def atualizar_itens_normais(self, item):
@@ -78,8 +83,7 @@ class GildedRose:
             item.qualidade -= 2
         item.validade -= 1
 
-        if item.qualidade < 0:
-            item.qualidade = 0
+        self.garantir_limites(item)
 
     def atualizar_conjurado(self, item):
         if item.validade >= 0:
@@ -89,8 +93,7 @@ class GildedRose:
             item.qualidade -= 4
         item.validade -= 1
 
-        if item.qualidade < 0:
-            item.qualidade = 0 
+        self.garantir_limites(item)
 
     def atualizar_qualidade(self):
         for item in self.itens:
@@ -98,7 +101,7 @@ class GildedRose:
             if (item.nome == "Aged Brie"):
                 self.atualizar_aged_brie(item)
 
-            elif (item.nome == "Sulfuras"):
+            elif (item.nome == "Sulfuras" or item.nome == "Sulfuras vencido"):
                 self.atualizar_sulfuras(item)
 
             elif (item.nome == "Backstage passes"):
@@ -122,7 +125,7 @@ if __name__ == "__main__":
         Item("Backstage passes", validade=10, qualidade=49),
         Item("Backstage passes", validade=5, qualidade=49),
         Item("Conjurado", validade=10, qualidade=20),
-        Item("Conjurado", validade=-1, qualidade=2)
+        Item("Conjurado", validade=-1, qualidade=4)
     ]
     rose = GildedRose(itens)
     print("Dia 0:")
