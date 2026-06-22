@@ -29,3 +29,14 @@ Tipo de item com a maior quantidade de testes realizado para garantir que:
 - 10 a 6 dias antes: ganha 2 de qualidade por dia.
 - 5 a 0 dias antes: ganha 3 de qualidade por dia.
 - Quando a validade for menor que 0 a qualidade vira 0. 
+
+## Refatoração
+
+Com partida na função *atualizar_qualidade()* foram criadas 4 funções para atualizar cada tipo de item independentemente. Sendo essas:
+```python
+    atualizar_aged_brie()
+    atualizar_sulfuras()
+    atualizar_backstage_passes()
+    atualizar_itens_normais()
+```
+Além disso, a função *atualizar_qualidade()* tempo apenas o papel de chamar a função adequada dependendo do tipo do item.
