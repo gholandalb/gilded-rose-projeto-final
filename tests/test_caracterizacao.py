@@ -99,3 +99,20 @@ def test_itens_backstage_passes():
     assert itens[4].validade == -1
     assert itens[4].qualidade == 0
     
+def test_itens_conjurado():
+    #arrange 
+    itens = [
+        Item("Conjurado", validade=10, qualidade=20),
+        Item("Conjurado", validade=-1, qualidade=2)
+    ]
+    rose = GildedRose(itens)
+
+    #act
+    rose.atualizar_qualidade()
+
+    #assert
+    assert itens[0].validade == 9 
+    assert itens[0].qualidade == 18
+
+    assert itens[1].validade == -2
+    assert itens[1].qualidade == 0
