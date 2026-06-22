@@ -49,3 +49,24 @@ def test_itens_aged_brie():
 
     assert itens[1].validade == -2
     assert itens[1].qualidade == 12
+
+def test_itens_sulfuras():
+    #arrange 
+    itens = [
+        Item("Sulfuras", validade=9, qualidade=80),
+        Item("Sulfuras vencido", validade=-1, qualidade=80)
+    ]
+    rose = GildedRose(itens)
+
+    #act
+    rose.atualizar_qualidade()
+
+    #assert
+    assert itens[0].validade == 9 
+    assert itens[0].qualidade == 80
+
+    #ao executar o código, sulfuras vencidas tem o comportamento de um item qualquer vencido.
+    assert itens[1].validade == -2
+    assert itens[1].qualidade == 78
+
+
