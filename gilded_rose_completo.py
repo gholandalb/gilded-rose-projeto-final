@@ -30,10 +30,11 @@ class GildedRose:
     def __init__(self, itens: list[Item]):
         self.itens = itens
 
-    def atualiza_aged_brie(item):
+    def atualiza_aged_brie(self, item):
+
         item.validade -= 1
 
-        if item.validade > 0:
+        if item.validade >= 0:
             item.qualidade += 1 
 
         elif item.validade < 0:
@@ -41,6 +42,31 @@ class GildedRose:
 
         if item.qualidade > 50:
             item.qualidade = 50
+
+
+    def atualiza_sulfuras(self, item):
+        if item.validade > 0:
+            item.qualidade = 80
+        else:
+            item.qualidade -= 1
+            item.validade -= 1
+
+
+    def atualiza_backstage_passes(self, item):
+        if item.validade >= 11:
+            item.qualidade += 1
+
+        elif item.validade >= 6:
+            item.qualidade += 2
+
+        elif item.validade > 0:
+            item.qualidade += 3
+
+        item.validade -= 1
+
+        if item.validade < 0:
+            item.qualidade = 0
+
 
     def atualizar_qualidade(self):
         for item in self.itens:
