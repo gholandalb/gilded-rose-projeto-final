@@ -30,6 +30,18 @@ class GildedRose:
     def __init__(self, itens: list[Item]):
         self.itens = itens
 
+    def atualiza_aged_brie(item):
+        item.validade -= 1
+
+        if item.validade > 0:
+            item.qualidade += 1 
+
+        elif item.validade < 0:
+            item.qualidade += 2
+
+        if item.qualidade > 50:
+            item.qualidade = 50
+
     def atualizar_qualidade(self):
         for item in self.itens:
             if item.nome != "Aged Brie" and item.nome != "Backstage passes":
