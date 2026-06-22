@@ -40,3 +40,7 @@ Com partida na função *atualizar_qualidade()* foram criadas 4 funções para a
     atualizar_itens_normais()
 ```
 Além disso, a função *atualizar_qualidade()* tempo apenas o papel de chamar a função adequada dependendo do tipo do item.
+
+## Nova função para itens "Conjurado"
+
+Foi adicionada a função atualizar_conjurado() que cobre itens do tipo "Conjurado". A qualidade desses itens diminui o dobro em relação a um item normal. 
