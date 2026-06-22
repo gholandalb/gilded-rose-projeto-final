@@ -14,10 +14,18 @@ Foram realizados 3 testes, garantindo, respectivamente, que:
 ### 2. Itens Aged Brie 
 Foram realizados 2 testes, garantindo, respectivamente, que:
 
-- a qualidada aumenta 1 ponto caso esteja dentro da validade.
-- a qualidade aumenta 2 pontos caso a validade seja menor que 0.
+- A qualidada aumenta 1 ponto caso esteja dentro da validade.
+- A qualidade aumenta 2 pontos caso a validade seja menor que 0.
 
 ### 3. Itens Sulfuras
 2 testes foram feitos para confirmar o comportamento do item sulfura normal e do item sulfura vencido. 
 
     OBS: foi notado que o item sulfura vencido tem o mesmo comportamento de um item normal vencido.
+
+### 4. Itens Backstage passes 
+Tipo de item com a maior quantidade de testes realizado para garantir que:
+- A qualidade não passe de 50
+- 11 ou mais dias antes: ganha 1 de qualidade por dia.
+- 10 a 6 dias antes: ganha 2 de qualidade por dia.
+- 5 a 0 dias antes: ganha 3 de qualidade por dia.
+- Quando a validade for menor que 0 a qualidade vira 0. 
