@@ -43,6 +43,9 @@ class GildedRose:
         if item.qualidade > 50:
             item.qualidade = 50
 
+        if item.qualidade < 0:
+            item.qualidade = 0
+
 
     def atualizar_sulfuras(self, item):
         item.qualidade = 80
@@ -78,6 +81,16 @@ class GildedRose:
         if item.qualidade < 0:
             item.qualidade = 0
 
+    def atualizar_conjurado(self, item):
+        if item.validade >= 0:
+            item.qualidade -= 2
+
+        elif item.validade < 0:
+            item.qualidade -= 4
+        item.validade -= 1
+
+        if item.qualidade < 0:
+            item.qualidade = 0 
 
     def atualizar_qualidade(self):
         for item in self.itens:
@@ -90,6 +103,9 @@ class GildedRose:
 
             elif (item.nome == "Backstage passes"):
                 self.atualizar_backstage_passes(item)
+
+            elif (item.nome == "Conjurado"):
+                self.atualizar_conjurado(item)
 
             else:
                 self.atualizar_itens_normais(item)
@@ -105,6 +121,8 @@ if __name__ == "__main__":
         Item("Backstage passes", validade=15, qualidade=20),
         Item("Backstage passes", validade=10, qualidade=49),
         Item("Backstage passes", validade=5, qualidade=49),
+        Item("Conjurado", validade=10, qualidade=20),
+        Item("Conjurado", validade=-1, qualidade=2)
     ]
     rose = GildedRose(itens)
     print("Dia 0:")
