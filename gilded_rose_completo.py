@@ -45,11 +45,7 @@ class GildedRose:
 
 
     def atualizar_sulfuras(self, item):
-        if item.validade > 0:
-            item.qualidade = 80
-        else:
-            item.qualidade -= 1
-            item.validade -= 1
+        item.qualidade = 80
 
 
     def atualizar_backstage_passes(self, item):
@@ -77,37 +73,26 @@ class GildedRose:
 
         elif item.validade < 0:
             item.qualidade -= 2
+        item.validade -= 1
+
+        if item.qualidade < 0:
+            item.qualidade = 0
 
 
     def atualizar_qualidade(self):
         for item in self.itens:
-            if item.nome != "Aged Brie" and item.nome != "Backstage passes":
-                if item.qualidade > 0:
-                    if item.nome != "Sulfuras":
-                        item.qualidade = item.qualidade - 1
+
+            if (item.nome == "Aged Brie"):
+                self.atualizar_aged_brie(item)
+
+            elif (item.nome == "Sulfuras"):
+                self.atualizar_sulfuras(item)
+
+            elif (item.nome == "Backstage passes"):
+                self.atualizar_backstage_passes(item)
+
             else:
-                if item.qualidade < 50:
-                    item.qualidade = item.qualidade + 1
-                    if item.nome == "Backstage passes":
-                        if item.validade < 11:
-                            if item.qualidade < 50:
-                                item.qualidade = item.qualidade + 1
-                        if item.validade < 6:
-                            if item.qualidade < 50:
-                                item.qualidade = item.qualidade + 1
-            if item.nome != "Sulfuras":
-                item.validade = item.validade - 1
-            if item.validade < 0:
-                if item.nome != "Aged Brie":
-                    if item.nome != "Backstage passes":
-                        if item.qualidade > 0:
-                            if item.nome != "Sulfuras":
-                                item.qualidade = item.qualidade - 1
-                    else:
-                        item.qualidade = 0
-                else:
-                    if item.qualidade < 50:
-                        item.qualidade = item.qualidade + 1
+                self.atualizar_itens_normais(item)
 
 
 if __name__ == "__main__":
